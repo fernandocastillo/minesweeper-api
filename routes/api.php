@@ -20,7 +20,11 @@ use App\Http\Controllers\AuthenticationController;
 
 
 Route::post('register', 'AuthenticationController@register')->name('auth.register');
+Route::get('login', 'AuthenticationController@login')->name('auth.login');
+
 Route::group(['middleware' => ['auth:api']], function() {
+
+    Route::get('test', 'AuthenticationController@test')->name('auth.test');
 
 });
 

@@ -14,7 +14,11 @@ API based in Laravel 5.8
 - Test api responses
 
 ### Methods
-POST /api/register
+
+---------------
+#### POST /api/register
+Register new user
+
 
 Params:
 ```sh
@@ -25,6 +29,25 @@ Params:
     "password_confirm": "12345678"
 }
 ```
+
+ ---------------
+#### GET /api/login
+Get api token.
+
+Params:
+```sh
+{    
+    "email": "something@email.com"
+    "password: "12345678",    
+}
+```
+
+### Methods with API TOKEN REQUIRED
+
+---------------
+#### GET /api/test
+Test your api token.
+
 
 
 ### Author
