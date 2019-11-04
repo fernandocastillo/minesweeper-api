@@ -54,4 +54,8 @@ class User extends Authenticatable
         // Note: Password Histories are logged from the \App\Observer\User\UserObserver class
         $this->attributes['password'] = $hash;
     }
+
+    public function games(){
+        return $this->hasMany(Game::class);
+    }
 }

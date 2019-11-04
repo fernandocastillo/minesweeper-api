@@ -42,12 +42,28 @@ Params:
 }
 ```
 
-### Methods with API TOKEN REQUIRED
 
 ---------------
-#### GET /api/test
+#### GET /api/test (Bearer token required)
 Test your api token.
 
+
+---------------
+#### GET /api/game (Bearer token required)
+Get all current games from user authenticated. I am using uuid instead id in order to difficult to guess ID request from any other user.
+
+---------------
+#### POST /api/game (Bearer token required)
+Create a new game
+
+Params (Optional):
+```sh
+{    
+    "rows": "6"
+    "cols: "6",
+    "mines": "2"    
+}
+```
 
 
 ### Author

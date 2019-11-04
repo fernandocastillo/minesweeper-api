@@ -6,8 +6,12 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+
 use App\Events\UserRegisteredEvent;
 use App\Listeners\SendEmailWelcomeListener;
+
+use App\Events\NewGameCreatedEvent;
+use App\Listeners\ResumeAllCurrentGamesListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserRegisteredEvent::class  =>[
             SendEmailWelcomeListener::class
+        ],
+        NewGameCreatedEvent::class  =>[
+            ResumeAllCurrentGamesListener::class
         ]
     ];
 

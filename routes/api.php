@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +25,12 @@ Route::get('login', 'AuthenticationController@login')->name('auth.login');
 Route::group(['middleware' => ['auth:api']], function() {
 
     Route::get('test', 'AuthenticationController@test')->name('auth.test');
+
+
+    Route::group(['prefix'=>'game'], function(){
+        Route::get('/', 'GameController@index')->name('game.index');
+        Route::post('/', 'GameController@create')->name('game.create');
+    });
 
 });
 
