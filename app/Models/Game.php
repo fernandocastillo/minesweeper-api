@@ -16,4 +16,8 @@ class Game extends Model
     protected $casts = [
         'json_cells'    =>  'array'
     ];
+
+    public function scopeActive($query){
+        return $query->where('current_state','active');
+    }
 }

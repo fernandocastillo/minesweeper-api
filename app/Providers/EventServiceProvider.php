@@ -14,6 +14,14 @@ use App\Events\NewGameCreatedEvent;
 use App\Listeners\ResumeAllCurrentGamesListener;
 use App\Listeners\CreateNewGameGridListener;
 
+use App\Events\ExploreCellEvent;
+use App\Listeners\DiscoverCellListener;
+
+use App\Events\MineDiscoveredEvent;
+use App\Listeners\GameFinishedListener;
+
+
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -31,6 +39,12 @@ class EventServiceProvider extends ServiceProvider
         NewGameCreatedEvent::class  =>[
             ResumeAllCurrentGamesListener::class,
             CreateNewGameGridListener::class
+        ],
+        ExploreCellEvent::class  =>[
+            DiscoverCellListener::class,
+        ],
+        MineDiscoveredEvent::class  =>[
+            GameFinishedListener::class,
         ]
     ];
 

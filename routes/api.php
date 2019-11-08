@@ -30,6 +30,10 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::group(['prefix'=>'game'], function(){
         Route::get('/', 'GameController@index')->name('game.index');
         Route::post('/', 'GameController@create')->name('game.create');
+
+        Route::post('/explore', 'GameController@explore')->name('game.explore');
+
+
     });
 
 });

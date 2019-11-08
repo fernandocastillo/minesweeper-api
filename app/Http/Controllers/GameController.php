@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use Illuminate\Http\Request;
 use App\Http\Requests\GameRequest;
+use App\Http\Requests\ExploreRequest;
 use App\Http\Resources\GameResource;
 use App\Events\NewGameCreatedEvent;
+use App\Events\ExploreCellEvent;
 
 class GameController extends Controller
 {
     //
 
+    /**
+     * List all games from user
+     * @param Request $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function index(Request $request){
         return GameResource::collection($request->user()->games);
     }
@@ -35,6 +42,12 @@ class GameController extends Controller
             ->create($data);
 
         event(new NewGameCreatedEvent($game));
+        return response()->json(['game'=>new GameResource($game->refresh())]);
+    }
+
+    public function explore(ExploreRequest $request){
+        $game = $request->user()->games()->active()->first();
+        event(new ExploreCellEvent($game,$request->x,$request->y));
         return response()->json(['game'=>new GameResource($game->refresh())]);
     }
 }

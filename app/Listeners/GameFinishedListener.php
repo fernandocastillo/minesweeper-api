@@ -5,7 +5,7 @@ namespace App\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ResumeAllCurrentGamesListener
+class GameFinishedListener
 {
     /**
      * Create the event listener.
@@ -25,16 +25,12 @@ class ResumeAllCurrentGamesListener
      */
     public function handle($event)
     {
-        // Pending here I'll resume all current playing games
-
-        foreach(\Auth::user()->games as $temp){
-            $temp->current_state='resume';
-            $temp->save();
-        }
-
-        $game = $event->game->refresh();
-        $game->current_state='active';
+        //
+        $game = $event->game;
+        $grid =$game->json_cells;
+        $grid[$event->cell_to_explore] =config('mine.activated');
+        $game->json_cells = $grid;
+        $game->current_state = 'lost';
         $game->save();
-
     }
 }
