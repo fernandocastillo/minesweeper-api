@@ -12,6 +12,7 @@ use App\Listeners\SendEmailWelcomeListener;
 
 use App\Events\NewGameCreatedEvent;
 use App\Listeners\ResumeAllCurrentGamesListener;
+use App\Listeners\CreateNewGameGridListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -28,7 +29,8 @@ class EventServiceProvider extends ServiceProvider
             SendEmailWelcomeListener::class
         ],
         NewGameCreatedEvent::class  =>[
-            ResumeAllCurrentGamesListener::class
+            ResumeAllCurrentGamesListener::class,
+            CreateNewGameGridListener::class
         ]
     ];
 

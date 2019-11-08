@@ -54,7 +54,7 @@ Get all current games from user authenticated. I am using uuid instead id in ord
 
 ---------------
 #### POST /api/game (Bearer token required)
-Create a new game
+Create a new game and retrieve a json object with a cells representation. Check the file config/mine.php to see all possible cell states.
 
 Params (Optional):
 ```sh
